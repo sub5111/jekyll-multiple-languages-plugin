@@ -127,6 +127,8 @@ module Jekyll
         self.config['baseurl'] = baseurl_org + "/" + lang
         self.config['lang']    =                     lang
 
+        # jekyll-assets
+        assets = assets_org.clone
 
 
 

@@ -127,17 +127,7 @@ module Jekyll
         self.config['baseurl'] = baseurl_org + "/" + lang
         self.config['lang']    =                     lang
 
-        # jekyll-assets
-        assets = assets_org.clone
-        assets['skip_baseurl_with_cdn'] = true # Don't add lang-baseurl to assets path
-        assets['autowrite'] = false # And don't write assets
-        if assets_cdn_org.empty?
-           assets['cdn'] = url_org
-           assets['prefix'] = baseurl_org + assets_prefix_org
-        else
-           assets['prefix'] = baseurl_org + assets_prefix_org if not assets_org['skip_baseurl_with_cdn']
-        end
-        self.config['assets']  = assets
+
 
 
         puts "Building site for language: \"#{self.config['lang']}\" to: #{self.dest}"

@@ -119,12 +119,12 @@ module Jekyll
       
       # Remove .htaccess file from included files, so it wont show up on translations folders.
       self.include -= [".htaccess"]
-      
+
       languages.drop(1).each do |lang|
         
         # Language specific config/variables
         @dest                  = dest_org    + "/" + lang
-        self.config['baseurl'] = baseurl_org + "/" + lang
+        self.config['baseurl'] = baseurl_org
         self.config['lang']    =                     lang
 
         # jekyll-assets
@@ -132,7 +132,9 @@ module Jekyll
         assets['skip_baseurl_with_cdn'] = true # Don't add lang-baseurl to assets path
         assets['autowrite'] = false # And don't write assets
         if assets_cdn_org.empty?
-           assets['cdn'] = url_org
+           assets['prefix'] = baseurl_org + assets_prefix_org
+        else
+           assets['prefix'] = baseurl_org + assets_prefix_org if not assets_org['skip_baseurl_with_cdn']
         end
         self.config['assets']  = assets
 

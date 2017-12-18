@@ -133,7 +133,6 @@ module Jekyll
         assets['autowrite'] = false # And don't write assets
         if assets_cdn_org.empty?
            assets['cdn'] = url_org
-           assets['prefix'] = baseurl_org + assets_prefix_org
         end
         self.config['assets']  = assets
 
